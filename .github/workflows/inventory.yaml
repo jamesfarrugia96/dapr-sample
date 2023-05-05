@@ -10,8 +10,10 @@ on:
 
 env:
   AZURE_ACR_REPOSITORY: app-fabillio-inventory
-  REGISTRY: fabilliotest
+  REGISTRY: fabilliotestcr  
   ENVIRONMENT: "test-westeu"
+  PROGET_FAKTUM_LOGIN: ${{ secrets.PROGET_FAKTUM_LOGIN }}
+  PROGET_FAKTUM_PASSWORD: ${{ secrets.PROGET_FAKTUM_PASSWORD }}
 
 jobs:
   build:
@@ -55,4 +57,4 @@ jobs:
              -p \
                 environmentName=${{ env.ENVIRONMENT }} \
                 containerImage=${{ env.AZURE_ACR_REPOSITORY }}:${{ github.sha }} \
-                keyVaultName=kv-fabillio-${{ env.ENVIRONMENT }}
+                keyVaultName=kv-fabillio-test
