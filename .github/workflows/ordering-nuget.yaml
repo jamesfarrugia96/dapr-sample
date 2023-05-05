@@ -12,7 +12,7 @@ on:
 env:
   BUILD_CONFIGURATION: "Release"
   DOTNET_VERSION: "6.0.x"
-  GITHUB_PACKAGE_REGISTRY_URL: https://nuget.pkg.github.com/yuriy-butkevych/index.json
+  GITHUB_PACKAGE_REGISTRY_URL: https://nuget.pkg.github.com/yuriy-jamesfarrugia96/index.json
 
 jobs:
   nuget-build-and-push:
@@ -41,16 +41,16 @@ jobs:
         run: |
           cd Fabillio.Ordering
           dotnet restore
-          dotnet build Fabillio.Ordering.Domain/Fabillio.Ordering.Domain.csproj -c ${{ env.BUILD_CONFIGURATION }}  -p:PackageVersion=${{ steps.build_number.outputs.major }}.${{ steps.build_number.outputs.minor }}.${{ steps.build_number.outputs.patch }}
-          dotnet build Fabillio.Ordering.Public.Contracts/Fabillio.Ordering.Public.Contracts.csproj -c ${{ env.BUILD_CONFIGURATION }}  -p:PackageVersion=${{ steps.build_number.outputs.major }}.${{ steps.build_number.outputs.minor }}.${{ steps.build_number.outputs.patch }}
-          dotnet build Fabillio.Ordering.Public.Events/Fabillio.Ordering.Public.Events.csproj -c ${{ env.BUILD_CONFIGURATION }}  -p:PackageVersion=${{ steps.build_number.outputs.major }}.${{ steps.build_number.outputs.minor }}.${{ steps.build_number.outputs.patch }}
+          dotnet build Fabillio.Ordering.Domain/Fabillio.Ordering.Domain.csproj -c ${{ env.BUILD_CONFIGURATION }}  -p:PackageVersion=$1.0.0
+          dotnet build Fabillio.Ordering.Public.Contracts/Fabillio.Ordering.Public.Contracts.csproj -c ${{ env.BUILD_CONFIGURATION }}  -p:PackageVersion=$1.0.0
+          dotnet build Fabillio.Ordering.Public.Events/Fabillio.Ordering.Public.Events.csproj -c ${{ env.BUILD_CONFIGURATION }}  -p:PackageVersion=$1.0.0
 
-          dotnet pack Fabillio.Ordering.Domain/Fabillio.Ordering.Domain.csproj -c ${{ env.BUILD_CONFIGURATION }}  -p:PackageVersion=${{ steps.build_number.outputs.major }}.${{ steps.build_number.outputs.minor }}.${{ steps.build_number.outputs.patch }}
-          dotnet pack Fabillio.Ordering.Public.Contracts/Fabillio.Ordering.Public.Contracts.csproj -c ${{ env.BUILD_CONFIGURATION }}  -p:PackageVersion=${{ steps.build_number.outputs.major }}.${{ steps.build_number.outputs.minor }}.${{ steps.build_number.outputs.patch }}
-          dotnet pack Fabillio.Ordering.Public.Events/Fabillio.Ordering.Public.Events.csproj -c ${{ env.BUILD_CONFIGURATION }}  -p:PackageVersion=${{ steps.build_number.outputs.major }}.${{ steps.build_number.outputs.minor }}.${{ steps.build_number.outputs.patch }}
+          dotnet pack Fabillio.Ordering.Domain/Fabillio.Ordering.Domain.csproj -c ${{ env.BUILD_CONFIGURATION }}  -p:PackageVersion=$1.0.0
+          dotnet pack Fabillio.Ordering.Public.Contracts/Fabillio.Ordering.Public.Contracts.csproj -c ${{ env.BUILD_CONFIGURATION }}  -p:PackageVersion=$1.0.0
+          dotnet pack Fabillio.Ordering.Public.Events/Fabillio.Ordering.Public.Events.csproj -c ${{ env.BUILD_CONFIGURATION }}  -p:PackageVersion=$1.0.0
           
       - name: nuget publish
         run: |
           cd Fabillio.Ordering
-          dotnet nuget push *.Public.*/bin/Release/*.nupkg -k ${{ secrets.NUGET_API_KEY }} --skip-duplicate
-          dotnet nuget push Fabillio.Ordering.Domain/bin/Release/*.nupkg -k ${{ secrets.NUGET_API_KEY }} --skip-duplicate
+          dotnet nuget push *.Public.*/bin/Release/*.nupkg -k ${{ secrets.PROGET_FAKTUM_NUGET_KEY }} -s https://proget-repository.extense.io/nuget/faktum-nuget/ --skip-duplicate
+          dotnet nuget push Fabillio.Ordering.Domain/bin/Release/*.nupkg -k ${{ secrets.PROGET_FAKTUM_NUGET_KEY }} -s https://proget-repository.extense.io/nuget/faktum-nuget/ --skip-duplicate
