@@ -35,7 +35,7 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }}
           source-url: ${{ env.GITHUB_PACKAGE_REGISTRY_URL }}
         env:
-          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NUGET_AUTH_TOKEN: ${{secrets.PROGET_FAKTUM_NUGET_KEY}}
 
       - name: dotnet build and pack
         run: |
