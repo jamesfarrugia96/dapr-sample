@@ -43,13 +43,13 @@ jobs:
         run: |
           cd Fabillio.Ordering
           dotnet restore
-          dotnet build Fabillio.Ordering.Domain/Fabillio.Ordering.Domain.csproj -c ${{ env.BUILD_CONFIGURATION }}  -p:PackageVersion=$1.0.0
-          dotnet build Fabillio.Ordering.Public.Contracts/Fabillio.Ordering.Public.Contracts.csproj -c ${{ env.BUILD_CONFIGURATION }}  -p:PackageVersion=$1.0.0
-          dotnet build Fabillio.Ordering.Public.Events/Fabillio.Ordering.Public.Events.csproj -c ${{ env.BUILD_CONFIGURATION }}  -p:PackageVersion=$1.0.0
+          dotnet build Fabillio.Ordering.Domain/Fabillio.Ordering.Domain.csproj -c ${{ env.BUILD_CONFIGURATION }}  -p:PackageVersion=${{ steps.build_number.outputs.major }}.${{ steps.build_number.outputs.minor }}.${{ steps.build_number.outputs.patch }}
+          dotnet build Fabillio.Ordering.Public.Contracts/Fabillio.Ordering.Public.Contracts.csproj -c ${{ env.BUILD_CONFIGURATION }}  -p:PackageVersion=${{ steps.build_number.outputs.major }}.${{ steps.build_number.outputs.minor }}.${{ steps.build_number.outputs.patch }}
+          dotnet build Fabillio.Ordering.Public.Events/Fabillio.Ordering.Public.Events.csproj -c ${{ env.BUILD_CONFIGURATION }}  -p:PackageVersion=${{ steps.build_number.outputs.major }}.${{ steps.build_number.outputs.minor }}.${{ steps.build_number.outputs.patch }}
 
-          dotnet pack Fabillio.Ordering.Domain/Fabillio.Ordering.Domain.csproj -c ${{ env.BUILD_CONFIGURATION }}  -p:PackageVersion=$1.0.0
-          dotnet pack Fabillio.Ordering.Public.Contracts/Fabillio.Ordering.Public.Contracts.csproj -c ${{ env.BUILD_CONFIGURATION }}  -p:PackageVersion=$1.0.0
-          dotnet pack Fabillio.Ordering.Public.Events/Fabillio.Ordering.Public.Events.csproj -c ${{ env.BUILD_CONFIGURATION }}  -p:PackageVersion=$1.0.0
+          dotnet pack Fabillio.Ordering.Domain/Fabillio.Ordering.Domain.csproj -c ${{ env.BUILD_CONFIGURATION }}  -p:PackageVersion=${{ steps.build_number.outputs.major }}.${{ steps.build_number.outputs.minor }}.${{ steps.build_number.outputs.patch }}
+          dotnet pack Fabillio.Ordering.Public.Contracts/Fabillio.Ordering.Public.Contracts.csproj -c ${{ env.BUILD_CONFIGURATION }}  -p:PackageVersion=${{ steps.build_number.outputs.major }}.${{ steps.build_number.outputs.minor }}.${{ steps.build_number.outputs.patch }}
+          dotnet pack Fabillio.Ordering.Public.Events/Fabillio.Ordering.Public.Events.csproj -c ${{ env.BUILD_CONFIGURATION }}  -p:PackageVersion=${{ steps.build_number.outputs.major }}.${{ steps.build_number.outputs.minor }}.${{ steps.build_number.outputs.patch }}
           
       - name: nuget publish
         run: |
