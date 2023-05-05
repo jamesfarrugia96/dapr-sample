@@ -34,7 +34,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: ${{ env.DOTNET_VERSION }}}
+          dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - name: dotnet build and pack
         run: |
