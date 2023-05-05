@@ -13,6 +13,8 @@ env:
   BUILD_CONFIGURATION: "Release"
   DOTNET_VERSION: "6.0.x"
   GITHUB_PACKAGE_REGISTRY_URL: https://proget-repository.extense.io/nuget/faktum-nuget/
+  PROGET_FAKTUM_LOGIN: ${{ secrets.PROGET_FAKTUM_LOGIN }}
+  PROGET_FAKTUM_PASSWORD: ${{ secrets.PROGET_FAKTUM_PASSWORD }}
 
 jobs:
   nuget-build-and-push:
@@ -35,7 +37,7 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }}
           source-url: ${{ env.GITHUB_PACKAGE_REGISTRY_URL }}
         env:
-          NUGET_AUTH_TOKEN: ${{secrets.PROGET_FAKTUM_NUGET_KEY}}
+          NUGET_AUTH_TOKEN: ${{ secrets.PROGET_FAKTUM_NUGET_KEY }}
 
       - name: dotnet build and pack
         run: |
