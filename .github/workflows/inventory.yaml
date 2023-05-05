@@ -12,7 +12,7 @@ env:
   AZURE_ACR_REPOSITORY: app-fabillio-inventory
   REGISTRY: fabilliotestcr  
   ENVIRONMENT: "test-westeu"
-  PROGET_PACKAGE_REGISTRY_URL: https://proget-repository.extense.io/nuget/faktum-nuget/
+  PROGET_PACKAGE_REGISTRY_URL: proget-repository.extense.io:10.150.10.51
   PROGET_FAKTUM_LOGIN: ${{ secrets.PROGET_FAKTUM_LOGIN }}
   PROGET_FAKTUM_PASSWORD: ${{ secrets.PROGET_FAKTUM_PASSWORD }}
 
