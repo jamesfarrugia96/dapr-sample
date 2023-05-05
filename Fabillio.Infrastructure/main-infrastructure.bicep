@@ -48,9 +48,9 @@ module serviceBus 'service-bus.bicep' = {
 
 // API Management
 module apim 'api-management.bicep' = {
-  name: 'apim-fabillio-${environmentName}'
+  name: 'apimanagement-fabillio-${environmentName}'
   params: {
-    apimName: 'apim-fabillio-${environmentName}'
+    apimName: 'apimanagement-fabillio-${environmentName}'
     publisherName: 'fabillio'
     publisherEmail: 'contact@fabillio.com'
     apimLocation: location

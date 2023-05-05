@@ -36,7 +36,7 @@ module inventoryService '../../Fabillio.Infrastructure/container-http.bicep' = {
 module apimInveentory '../../Fabillio.Infrastructure/api-management-api.bicep' = {
   name: 'apim-${inventoryServiceName}'
   params: {
-    apimName: 'apim-fabillio-${environmentName}'
+    apimName: 'apimanagement-fabillio-${environmentName}'
     apiName: inventoryServiceName
     apiUrl: 'https://${inventoryService.outputs.fqdn}'
     apiPath: 'inventory'
